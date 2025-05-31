@@ -100,9 +100,9 @@ Clone this repository and run the following commands in your IDE terminal:
 
 👤 **Osemeilu Itua Endurance**
 
-- GitHub: 
-- Twitter:
-- LinkedIn:
+- GitHub: [@itua234](https://github.com/itua234)
+- Twitter: [@softechZ3](https://twitter.com/softechZ3)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/itua-osemeilu-4725b2279/)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
