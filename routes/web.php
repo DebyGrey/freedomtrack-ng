@@ -49,5 +49,16 @@ Route::get('/run-migrations', function () {
     return 'Migrations have been run successfully.';
 });
 
+Route::get('/run-seeders', function () {
+    Artisan::call('db:seed', ['--force' => true]);
+    return '✅ Seeders executed successfully!';
+});
+
+Route::get('/refresh-and-seed', function () {
+    Artisan::call('migrate:refresh', ['--force' => true]);
+    Artisan::call('db:seed', ['--force' => true]);
+    return '✅ Database refreshed and seeded successfully!';
+});
+
 
 require __DIR__ . '/auth.php';
