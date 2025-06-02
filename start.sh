@@ -22,6 +22,3 @@ php artisan route:clear
 
 echo "Clearing view cache..."
 php artisan view:clear
-
-# echo "Publishing cloudinary provider..."
-# php artisan vendor:publish --provider="CloudinaryLabs\CloudinaryLaravel\CloudinaryServiceProvider" --tag="cloudinary-laravel-config"
