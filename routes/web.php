@@ -44,28 +44,28 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-Route::get('/run-migrations', function () {
-    Artisan::call('migrate', ['--force' => true]);
-    return 'Migrations have been run successfully.';
-});
+// Route::get('/run-migrations', function () {
+//     Artisan::call('migrate', ['--force' => true]);
+//     return 'Migrations have been run successfully.';
+// });
 
-Route::get('/run-seeders', function () {
-    Artisan::call('db:seed', ['--force' => true]);
-    return '✅ Seeders executed successfully!';
-});
+// Route::get('/run-seeders', function () {
+//     Artisan::call('db:seed', ['--force' => true]);
+//     return '✅ Seeders executed successfully!';
+// });
 
-Route::get('/refresh-and-seed', function () {
-    Artisan::call('migrate:refresh', ['--force' => true]);
-    Artisan::call('db:seed', ['--force' => true]);
-    return '✅ Database refreshed and seeded successfully!';
-});
+// Route::get('/refresh-and-seed', function () {
+//     Artisan::call('migrate:refresh', ['--force' => true]);
+//     Artisan::call('db:seed', ['--force' => true]);
+//     return '✅ Database refreshed and seeded successfully!';
+// });
 
-Route::get('/clear-cache', function () {
-    Artisan::call('config:clear');
-    Artisan::call('cache:clear');
-    Artisan::call('route:clear');
-    return 'Cache cleared!';
-});
+// Route::get('/clear-cache', function () {
+//     Artisan::call('config:clear');
+//     Artisan::call('cache:clear');
+//     Artisan::call('route:clear');
+//     return 'Cache cleared!';
+// });
 
 
 

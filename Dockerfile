@@ -1,29 +1,21 @@
-FROM php:8.2-apache
+FROM richarvey/nginx-php-fpm:latest
 
-# Install dependencies for PostgreSQL
-RUN apt-get update && apt-get install -y libpq-dev \
-    && docker-php-ext-install pdo_pgsql
-    
-RUN apt-get update && apt-get install -y \
-    libonig-dev libzip-dev unzip zip git \
-    && docker-php-ext-install pdo_mysql mbstring zip bcmath
+COPY . .
 
-RUN a2enmod rewrite
+# Image config
+ENV SKIP_COMPOSER 1
+ENV WEBROOT /var/www/html/public
+ENV PHP_ERRORS_STDERR 1
+ENV RUN_SCRIPTS 1
+ENV REAL_IP_HEADER 1
 
-# Set Apache DocumentRoot to Laravel's public folder
-RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
+# Laravel config
+ENV APP_ENV production
+ENV APP_DEBUG false
+ENV LOG_CHANNEL stderr
 
-WORKDIR /var/www/html
 
-COPY . /var/www/html
+# Allow composer to run as root
+ENV COMPOSER_ALLOW_SUPERUSER 1
 
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-RUN composer install --no-dev --optimize-autoloader
-
-RUN chown -R www-data:www-data storage bootstrap/cache
-
-EXPOSE 80
-
-CMD ["apache2-foreground"]
-
+CMD ["/start.sh"]
