@@ -60,5 +60,13 @@ Route::get('/refresh-and-seed', function () {
     return '✅ Database refreshed and seeded successfully!';
 });
 
+Route::get('/clear-cache', function () {
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    return 'Cache cleared!';
+});
+
+
 
 require __DIR__ . '/auth.php';
