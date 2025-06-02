@@ -1,29 +1,29 @@
 #!/usr/bin/env bash
-echo "can you see me..."
+set -e
 
-php artisan migrate --force
-php-fpm
+cd /var/www/html
 
-set -e  # stop script if any command fails
+echo "Starting container setup..."
 
 echo "Clearing composer cache..."
 composer clear-cache
 
-echo "Running composer"
+echo "Installing dependencies..."
+composer install --no-dev
 
-composer install --no-dev --working-dir=/var/www/html
-
+echo "Generating application key..."
 php artisan key:generate
 
-echo "Running migrations..."
+echo "Running database migrations..."
 php artisan migrate --force
+
+echo "Seeding database..."
 php artisan db:seed --force
 
-echo "Clearing config cache..."
+echo "Clearing caches..."
 php artisan config:clear
-
-echo "Clearing routes cache..."
 php artisan route:clear
-
-echo "Clearing view cache..."
 php artisan view:clear
+
+echo "Starting php-fpm..."
+php-fpm
