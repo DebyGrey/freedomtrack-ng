@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
+echo "can you see me..."
+
+php artisan migrate --force
+php-fpm
+
 set -e  # stop script if any command fails
 
 echo "Clearing composer cache..."
