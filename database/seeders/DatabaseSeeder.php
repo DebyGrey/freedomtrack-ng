@@ -14,19 +14,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Disable foreign key checks
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-
-        // Truncate tables
-        DB::table('activities')->truncate();
-        DB::table('behavior_records')->truncate();
-        DB::table('inmate_program')->truncate();
-        DB::table('programs')->truncate();
-        DB::table('inmates')->truncate();
-        DB::table('users')->truncate();
-
-        // Re-enable foreign key checks
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // Truncate all tables with cascade to handle FKs in Postgres
+        DB::statement('TRUNCATE activities, behavior_records, inmate_program, programs, inmates, users CASCADE;');
 
         $this->call([
             UserSeeder::class,
