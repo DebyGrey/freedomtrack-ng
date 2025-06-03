@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('inmate_id')->constrained()->onDelete('cascade');
             $table->foreignId('program_id')->constrained()->onDelete('cascade');
             $table->enum('status', ['active', 'completed', 'dropped'])->default('active');
-            $table->decimal('progress')->default(6, 3); // 0-100 percentage
+            $table->decimal('progress',6, 3); // 0-100 percentage
             $table->date('enrollment_date');
             $table->date('completion_date')->nullable();
             $table->string('certification')->nullable(); // Certification received upon completion
